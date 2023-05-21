@@ -1,0 +1,37 @@
+﻿@model DocViewModel
+@{
+    ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "' | ") + "Script Explanations";
+    ViewData["Description"] = Model.IsAll ? "Script Explanation List" : "Script Explanation search for '" + Model.SearchText + "'";
+    ViewData["MetaColor"] = "#FFFFFF";
+}
+
+<span class="center_helper">
+    <div class="jumbotron">
+        <h3>Denizen Script Script Explanations</h3>
+        <br>Script Explanations explain components of Denizen in a more direct and technical way than <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
+    </div>
+
+    <input type="text" id="search_bar" placeholder="Search Script Explanations...">
+    <script>
+        document.getElementById('search_bar').addEventListener('keydown', function(e) {
+            if (!e)  {
+                var e = window.event;
+            }
+            if (e.keyCode == 13) {
+                document.location.href = '/Docs/Scripts/' + encodeURIComponent(document.getElementById('search_bar').value);
+            }
+        }, false);
+    </script>
+    <br><br>
+
+    @if (Model.IsAll)
+    {
+        <h5>Showing all @Model.Max Script explanations...</h5>
+    }
+    else
+    {
+        <h5>Showing @Model.CurrentlyShown out of @Model.Max Script explanations...</h5>
+    }
+</span>
+
+@Model.Content

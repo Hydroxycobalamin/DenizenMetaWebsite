@@ -95,10 +95,24 @@ namespace DenizenMetaWebsite.Controllers
             return HandleMeta(this, id, MetaSiteCore.Commands);
         }
 
+        public IActionResult Procedures([Bind] string id) 
+        {
+            id = FixID(id);
+            return HandleMeta(this, id, MetaSiteCore.Procedures);
+        }
+
         public IActionResult ObjectTypes([Bind] string id)
         {
             id = FixID(id);
             return HandleMeta(this, id, MetaSiteCore.ObjectTypes);
+        }
+        public IActionResult Tasks([Bind] string id) {
+            id = FixID(id);
+            return HandleMeta(this, id, MetaSiteCore.Tasks);
+        }
+        public IActionResult Scripts([Bind] string id) {
+            id = FixID(id);
+            return HandleMeta(this, id, MetaSiteCore.Scripts);
         }
 
         public IActionResult Tags([Bind] string id)
@@ -132,12 +146,6 @@ namespace DenizenMetaWebsite.Controllers
             id = FixID(id);
             List<WebsiteMetaEvent> addedEvent = new();
             return HandleMeta(this, id, MetaSiteCore.Events, (orig) => orig.IsEmpty() ? GetExtraEvents(id) : null);
-        }
-
-        public IActionResult Mechanisms([Bind] string id)
-        {
-            id = FixID(id);
-            return HandleMeta(this, id, MetaSiteCore.Mechanisms);
         }
 
         public IActionResult Actions([Bind] string id)

@@ -26,6 +26,6 @@ namespace DenizenMetaWebsite.MetaObjects
             AddHtmlEndParts();
         }
 
-        public override string GroupingString => Object.Format == "N/A" ? "Pseudo ObjectType" : (Object.Plugin == null ? "Core" : "External");
+        public override string GroupingString => Object.Format == "N/A" ? "Pseudo ObjectType" : (Object.Script == null ? "Core" : "External");
     }
 }

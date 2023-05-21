@@ -29,7 +29,11 @@ namespace DenizenMetaWebsite
 
         public static List<WebsiteMetaLanguage> Languages;
 
-        public static List<WebsiteMetaMechanism> Mechanisms;
+        public static List<WebsiteMetaProcedure> Procedures;
+
+        public static List<WebsiteMetaTask> Tasks;
+
+        public static List<WebsiteMetaScript> Scripts;
 
         public static List<WebsiteMetaObject> AllObjects;
 
@@ -73,7 +77,9 @@ namespace DenizenMetaWebsite
                 List<WebsiteMetaEvent> _events = new();
                 List<WebsiteMetaAction> _actions = new();
                 List<WebsiteMetaLanguage> _languages = new();
-                List<WebsiteMetaMechanism> _mechanisms = new();
+                List<WebsiteMetaProcedure> _procedures = new();
+                List<WebsiteMetaTask> _tasks = new();
+                List<WebsiteMetaScript> _scripts = new();
                 List<WebsiteMetaObject> _allObjects = new();
                 void procSet<T, T2>(ref List<T> webObjs, ICollection<T2> origObjs) where T: WebsiteMetaObject<T2>, new() where T2: MetaObject
                 {
@@ -82,7 +88,7 @@ namespace DenizenMetaWebsite
                         T webObj = new() { Object = obj };
                         webObjs.Add(webObj);
                     }
-                    webObjs = webObjs.OrderBy(o => string.IsNullOrWhiteSpace(o.Object.Plugin) ? 0 : 1).ThenBy(o => o.Object.Warnings.Count).ThenBy(o => o.Object.Group).ThenBy(o => o.Object.CleanName).ToList();
+                    webObjs = webObjs.OrderBy(o => string.IsNullOrWhiteSpace(o.Object.Script) ? 0 : 1).ThenBy(o => o.Object.Warnings.Count).ThenBy(o => o.Object.Group).ThenBy(o => o.Object.CleanName).ToList();
                     _allObjects.AddRange(webObjs);
                 }
                 procSet(ref _commands, docs.Commands.Values);
@@ -91,7 +97,9 @@ namespace DenizenMetaWebsite
                 procSet(ref _events, docs.Events.Values);
                 procSet(ref _actions, docs.Actions.Values);
                 procSet(ref _languages, docs.Languages.Values);
-                procSet(ref _mechanisms, docs.Mechanisms.Values);
+                procSet(ref _scripts, docs.Scripts.Values);
+                procSet(ref _tasks, docs.Tasks.Values);
+                procSet(ref _procedures, docs.Procedures.Values);
                 foreach (WebsiteMetaObject obj in _allObjects)
                 {
                     obj.Docs = docs;
@@ -103,7 +111,9 @@ namespace DenizenMetaWebsite
                 Events = _events;
                 Actions = _actions;
                 Languages = _languages;
-                Mechanisms = _mechanisms;
+                Procedures = _procedures;
+                Tasks = _tasks;
+                Scripts = _scripts;
                 AllObjects = _allObjects;
                 MetaDocs.CurrentMeta = docs;
                 Console.WriteLine("Meta loaded and ready!");

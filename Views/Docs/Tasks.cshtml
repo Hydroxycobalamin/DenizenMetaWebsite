@@ -1,0 +1,38 @@
+﻿@model DocViewModel
+@{
+    ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "' | ") + "Tasks";
+    ViewData["Description"] = Model.IsAll ? "Task List" : "Task search for '" + Model.SearchText + "'";
+    ViewData["MetaColor"] = "#FFFFFF";
+}
+
+<span class="center_helper">
+    <div class="jumbotron">
+        <h3>Denizen Script Tasks</h3>
+        <br>Tasks are found in object properties, the 'adjust' command, and similar. These are used to change the state of an object.
+        <br>Learn about how Tasks work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
+    </div>
+
+    <input type="text" id="search_bar" placeholder="Search Tasks...">
+    <script>
+        document.getElementById('search_bar').addEventListener('keydown', function(e) {
+            if (!e)  {
+                var e = window.event;
+            }
+            if (e.keyCode == 13) {
+                document.location.href = '/Docs/Tasks/' + encodeURIComponent(document.getElementById('search_bar').value);
+            }
+        }, false);
+    </script>
+    <br><br>
+
+    @if (Model.IsAll)
+    {
+    <h5>Showing all @Model.Max Tasks...</h5>
+    }
+    else
+    {
+    <h5>Showing @Model.CurrentlyShown out of @Model.Max Tasks...</h5>
+    }
+</span>
+
+@Model.Content

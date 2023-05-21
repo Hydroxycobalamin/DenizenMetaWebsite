@@ -103,10 +103,6 @@ namespace DenizenMetaWebsite.MetaObjects
                     prefix = "Event:";
                     fixedLink = $"<a href=\"/Docs/Events/{targetName}\">{escapedName}</a>";
                     break;
-                case "mechanism":
-                    prefix = "Mechanism:";
-                    fixedLink = $"<a href=\"/Docs/Mechanisms/{targetName}\">{escapedName}</a>";
-                    break;
                 case "action":
                     prefix = "Action:";
                     fixedLink = $"<a href=\"/Docs/Actions/{targetName}\">{escapedName}</a>";
@@ -119,9 +115,13 @@ namespace DenizenMetaWebsite.MetaObjects
                     prefix = "ObjectType:";
                     fixedLink = $"<a href=\"/Docs/ObjectTypes/{targetName}\">{escapedName}</a>";
                     break;
-                case "property":
-                    prefix = "Property:";
-                    fixedLink = $"<a href=\"/Docs/Mechanisms/{targetName}\">{escapedName}</a>";
+                case "procedure":
+                    prefix = "Procedure:";
+                    fixedLink = $"<a href=\"/Docs/Procedures/{targetName}\">{escapedName}</a>";
+                    break;
+                case "task":
+                    prefix = "Task:";
+                    fixedLink = $"<a href=\"/Docs/Tasks/{targetName}\">{escapedName}</a>";
                     break;
                 default:
                     Console.Error.WriteLine("Invalid link type '" + linkContent[0] + "' found in " + content);
@@ -180,7 +180,7 @@ namespace DenizenMetaWebsite.MetaObjects
         {
             HtmlContent += TableLine("default text-muted smaller_text", "Synonyms (Search Aid)", string.Join(", ", Object.Synonyms), true);
             HtmlContent += TableLine("default text-muted", "Group", Object.Group, true);
-            HtmlContent += TableLine("warning", "Requires", Object.Plugin, true);
+            HtmlContent += TableLine("warning", "Requires", Object.Script, true);
             HtmlContent += TableLine("danger", "Deprecated", Object.Deprecated, true);
             HtmlContent += TableLine("danger", "Warning(s)", string.Join("\n", Object.Warnings), true);
             HtmlContent += TableLine("secondary", "Source", Object.SourceFile.StartsWith("https://") ? $"<a href=\"{URLSafe(Object.SourceFile)}\">{Util.EscapeForHTML(Object.SourceFile)}</a>" : Object.SourceFile, false);
