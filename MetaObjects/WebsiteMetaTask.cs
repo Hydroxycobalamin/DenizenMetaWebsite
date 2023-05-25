@@ -23,6 +23,6 @@ namespace DenizenMetaWebsite.MetaObjects {
             AddHtmlEndParts();
         }
 
-        public override string GroupingString => Object.Name + " Tasks";
+        public override string GroupingString => Object.Script + " Tasks";
     }
 }

@@ -114,6 +114,10 @@ namespace DenizenMetaWebsite.Controllers
             id = FixID(id);
             return HandleMeta(this, id, MetaSiteCore.Scripts);
         }
+        public IActionResult Informations([Bind] string id) {
+            id = FixID(id);
+            return HandleMeta(this, id, MetaSiteCore.Informations);
+        }
 
         public IActionResult Tags([Bind] string id)
         {

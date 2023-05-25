@@ -35,6 +35,8 @@ namespace DenizenMetaWebsite
 
         public static List<WebsiteMetaScript> Scripts;
 
+        public static List<WebsiteMetaInformation> Informations;
+
         public static List<WebsiteMetaObject> AllObjects;
 
         public static void Init()
@@ -80,6 +82,7 @@ namespace DenizenMetaWebsite
                 List<WebsiteMetaProcedure> _procedures = new();
                 List<WebsiteMetaTask> _tasks = new();
                 List<WebsiteMetaScript> _scripts = new();
+                List<WebsiteMetaInformation> _informations = new();
                 List<WebsiteMetaObject> _allObjects = new();
                 void procSet<T, T2>(ref List<T> webObjs, ICollection<T2> origObjs) where T: WebsiteMetaObject<T2>, new() where T2: MetaObject
                 {
@@ -100,6 +103,7 @@ namespace DenizenMetaWebsite
                 procSet(ref _scripts, docs.Scripts.Values);
                 procSet(ref _tasks, docs.Tasks.Values);
                 procSet(ref _procedures, docs.Procedures.Values);
+                procSet(ref _informations, docs.Informations.Values);
                 foreach (WebsiteMetaObject obj in _allObjects)
                 {
                     obj.Docs = docs;
@@ -114,6 +118,7 @@ namespace DenizenMetaWebsite
                 Procedures = _procedures;
                 Tasks = _tasks;
                 Scripts = _scripts;
+                Informations = _informations;
                 AllObjects = _allObjects;
                 MetaDocs.CurrentMeta = docs;
                 Console.WriteLine("Meta loaded and ready!");

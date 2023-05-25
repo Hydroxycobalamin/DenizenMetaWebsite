@@ -47,7 +47,7 @@ namespace DenizenMetaWebsite.MetaObjects
             AddHtmlEndParts();
         }
 
-        public override string GroupingString => Object.Group ?? "Error: Missing Group";
+        public override string GroupingString => Object.Script ?? "Error: Missing Group";
 
         private static readonly Random random = new();
 

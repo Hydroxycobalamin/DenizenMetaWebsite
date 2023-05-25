@@ -123,6 +123,14 @@ namespace DenizenMetaWebsite.MetaObjects
                     prefix = "Task:";
                     fixedLink = $"<a href=\"/Docs/Tasks/{targetName}\">{escapedName}</a>";
                     break;
+                case "script":
+                    prefix = "Script:";
+                    fixedLink = $"<a href=\"/Docs/Scripts/{targetName}\">{escapedName}</a>";
+                    break;
+                case "information":
+                    prefix = "Information:";
+                    fixedLink = $"<a href=\"/Docs/Informations/{targetName}\">{escapedName}</a>";
+                    break;
                 default:
                     Console.Error.WriteLine("Invalid link type '" + linkContent[0] + "' found in " + content);
                     fixedLink = "Error Invalid Link";
